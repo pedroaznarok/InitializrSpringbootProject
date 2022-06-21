@@ -1,0 +1,96 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema react2
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `react2`;
+CREATE SCHEMA IF NOT EXISTS `react2` DEFAULT CHARACTER SET utf8mb4;
+USE `react2` ;
+
+-- -----------------------------------------------------
+-- Table `react2`.`ingrediente`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `react2`.`ingrediente` ;
+
+CREATE TABLE IF NOT EXISTS `react2`.`ingrediente` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(255) NULL DEFAULT NULL,
+  `unidadMedida` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 13
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `react2`.`plato`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `react2`.`plato` ;
+
+CREATE TABLE IF NOT EXISTS `react2`.`plato` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(100) NOT NULL,
+  `imagenPath` VARCHAR(100) NOT NULL,
+  `precio` INT(11) NOT NULL,
+  `rubro` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `react2`.`plato_ingrediente`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `react2`.`plato_ingrediente` ;
+
+CREATE TABLE IF NOT EXISTS `react2`.`plato_ingrediente` (
+  `idPlato` INT(11) NOT NULL,
+  `idIngrediente` INT(11) NOT NULL,
+  `cantidad` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`idPlato`, `idIngrediente`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (1,'harina','gramos');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (2,'huevis','unidades');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (3,'queso','gramos');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (4,'salsa tomate','mililitros');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (5,'jamon cocido','gramos');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (6,'carne molida','gramos');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (7,'tomate','unidades');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (8,'lechuga','unidad');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (9,'agua','mililitro');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (10,'cebolla','unidades');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (11,'cebada','gramos');
+INSERT INTO `react2`.`ingrediente` (`id`,`nombre`,`unidadMedida`) VALUES (12,'lupulo','gramos');
+
+INSERT INTO `react2`.`plato` (`id`,`nombre`,`imagenPath`,`precio`,`rubro`) VALUES (1,'Pizza Especial','pizza-especial.jpg',120,'Comidas');
+INSERT INTO `react2`.`plato` (`id`,`nombre`,`imagenPath`,`precio`,`rubro`) VALUES (2,'Cerveza Deibeer','cerveza.jpg',140,'Bebidas');
+INSERT INTO `react2`.`plato` (`id`,`nombre`,`imagenPath`,`precio`,`rubro`) VALUES (3,'Empanadas Docena','empanadas.jpg',140,'Comidas');
+INSERT INTO `react2`.`plato` (`id`,`nombre`,`imagenPath`,`precio`,`rubro`) VALUES (4,'Lomo Completo','lomo-completo.jpg',150,'Comidas');
+INSERT INTO `react2`.`plato` (`id`,`nombre`,`imagenPath`,`precio`,`rubro`) VALUES (5,'Mini Hamburguesa','hamburguesa.jpg',100,'Comidas');
+
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (0,0,0);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (1,1,200);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (1,2,2);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (1,3,300);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (1,4,300);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (1,5,150);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (1,9,500);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (2,1,3);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (2,2,2);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (2,6,300);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (2,9,500);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (2,10,2);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (3,1,200);
+INSERT INTO `react2`.`plato_ingrediente` (`idPlato`,`idIngrediente`,`cantidad`) VALUES (3,2,1);
